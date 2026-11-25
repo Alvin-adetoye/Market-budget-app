@@ -1,0 +1,453 @@
+/* ---------- Colors (change them here once) ---------- */
+:root {
+  --bg: #0c1a16; /* page background: deep green */
+  --surface: #13261f; /* cards */
+  --surface-2: #1a3329; /* inputs and hover */
+  --border: #254638;
+  --text: #eef6f2;
+  --muted: #8fa89e;
+  --lime: #c6f35e; /* main accent */
+  --lime-dark: #0c1a16; /* text on lime */
+  --coral: #ff6b57; /* over budget / danger */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: "Outfit", "Segoe UI", system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- Navbar ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(12, 26, 22, 0.55);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--lime);
+  color: var(--lime-dark);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-cta {
+  background: var(--lime);
+  color: var(--lime-dark);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: opacity 0.2s;
+}
+
+.nav-cta:hover {
+  opacity: 0.85;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 72px 24px 56px;
+}
+
+.hero-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 54px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+.hero-sub {
+  margin-top: 18px;
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 480px;
+}
+
+.budget-form {
+  margin-top: 32px;
+}
+
+.budget-form label {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.budget-row {
+  display: flex;
+  gap: 10px;
+  max-width: 480px;
+}
+
+/* ---------- Inputs and buttons ---------- */
+input {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 16px;
+  font-family: inherit;
+}
+
+input::placeholder {
+  color: #5f7a6f;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px rgba(198, 243, 94, 0.15);
+}
+
+.btn {
+  height: 50px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn-lime {
+  background: var(--lime);
+  color: var(--lime-dark);
+}
+
+.btn-clear {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--coral);
+  font-size: 13px;
+  font-family: inherit;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-clear:hover {
+  background: rgba(255, 107, 87, 0.1);
+}
+
+/* ---------- Balance card (right side of hero) ---------- */
+.balance-card {
+  background: var(--lime);
+  color: var(--lime-dark);
+  border-radius: 28px;
+  padding: 32px;
+}
+
+.balance-label {
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.balance-amount {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin: 4px 0 28px;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.progress-track {
+  height: 12px;
+  background: rgba(12, 26, 22, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0 26px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--lime-dark);
+  border-radius: 999px;
+  transition: width 0.3s;
+}
+
+.balance-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(12, 26, 22, 0.15);
+}
+
+.split-label {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.split-value {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Over budget: add class "over" to #remainingCard and #progressFill with JS */
+.balance-card.over {
+  background: var(--coral);
+  color: #fff;
+}
+
+.balance-card.over .progress-track {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.balance-card.over .progress-fill {
+  background: #fff;
+}
+
+.balance-card.over .balance-split {
+  border-top-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- List section ---------- */
+.section {
+  padding: 40px 24px 88px;
+}
+
+.section-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.section-head h2 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.section-head p {
+  color: var(--muted);
+  margin-top: 8px;
+  max-width: 520px;
+}
+
+.list-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  margin-top: 32px;
+  align-items: start;
+}
+
+.add-card,
+.items-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 28px;
+}
+
+.add-card h3,
+.items-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.add-card label {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  margin: 18px 0 8px;
+}
+
+.add-card h3 + label {
+  margin-top: 16px;
+}
+
+.add-card .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Error message (for input validation) */
+.error {
+  font-size: 14px;
+  color: var(--coral);
+  margin-top: 12px;
+  min-height: 21px;
+}
+
+/* ---------- Items list ---------- */
+.list-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 48px 0;
+}
+
+/* Use these classes when you create each row with JS */
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 1;
+  font-size: 17px;
+}
+
+.item-price {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--lime);
+}
+
+.delete-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.delete-btn:hover {
+  background: rgba(255, 107, 87, 0.15);
+  color: var(--coral);
+}
+
+/* Helper: add or remove class "hidden" to show or hide things (e.g. #emptyState) */
+.hidden {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+ /* #itemList > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}  */
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 900px) {
+  .hero-inner,
+  .list-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text h1 {
+    font-size: 40px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+}

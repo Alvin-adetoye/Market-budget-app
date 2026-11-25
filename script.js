@@ -1,0 +1,99 @@
+const items = []
+let displayArea2 = document.getElementById("itemList")
+let emptyState = document.getElementById("emptyState")
+let budget = 0
+
+function setBudget() {
+  let budgetInput = document.getElementById("budgetInput").value
+  let displayArea = document.getElementById("totalBudget")
+  
+  if (budgetInput == "") {
+    alert("Set budget!")
+  } else {
+    displayArea.innerHTML = `₦${budgetInput}`
+    document.getElementById("budgetInput").value = ""
+    budget = Number(budgetInput)
+  }
+}
+
+function calculateRemaining() {
+  let remaining = budget - priceTotal
+  let remainingAmount = document.getElementById("remainingAmount")
+  remainingAmount.innerHTML = `₦${remaining}`
+
+}
+
+function addItem() {
+  let itemName = document.getElementById("itemName").value
+  let itemPrice = document.getElementById("itemPrice").value
+
+  let itemInput = {
+    name: itemName,
+    price: Number(itemPrice)
+  }
+  document.getElementById("itemName").value = ""
+  document.getElementById("itemPrice").value = ""
+  items.push(itemInput)
+  console.log(items);
+  show()
+  calculateTotal()
+  calculateRemaining()
+  // displayArea2.innerHTML = itemInput
+}
+
+function show() {
+  displayArea2.innerHTML = ""
+  for (let index = 0; index < items.length; index++) {
+    displayArea2.innerHTML += `<div class="item-row"><p class="item-name">${index + 1}. ${items[index].name}</p><p>₦${items[index].price}</p><button class="delete-btn" type="button" onclick="removeItem(${index})">
+        <i class="bi bi-trash3"></i>
+      </button></div>`
+  }
+  if (items.length === 0) {
+    emptyState.classList.remove("hidden")
+  } else {
+    emptyState.classList.add("hidden")
+  }
+}
+
+let priceTotal = 0
+
+
+function calculateTotal() {
+  let totalSpent = document.getElementById("totalSpent")
+
+  priceTotal = 0
+
+  for (let index = 0; index < items.length; index++) {
+    priceTotal += items[index].price
+  }
+
+  totalSpent.innerHTML = `₦${priceTotal}`
+}
+
+
+function removeItem(i) {
+  let check = confirm("Are you sure you want to delete item?")
+  if (check) {
+    items.splice(i, 1)
+    show()
+  } else {
+    show()
+  }
+}
+
+function clearAll() {
+  if (items.length === 0) {
+    alert("There is nothing to delete")
+  }
+  else {
+    let check = confirm("Are you sure you want to delete all items?")
+
+    if (check) {
+      items.length = 0
+      show()
+    }
+    else {
+      show()
+    }
+  }
+}
