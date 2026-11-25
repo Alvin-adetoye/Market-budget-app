@@ -3,10 +3,11 @@ let displayArea2 = document.getElementById("itemList")
 let emptyState = document.getElementById("emptyState")
 let budget = 0
 
+
 function setBudget() {
   let budgetInput = document.getElementById("budgetInput").value
   let displayArea = document.getElementById("totalBudget")
-  
+
   if (budgetInput == "") {
     alert("Set budget!")
   } else {
@@ -20,7 +21,13 @@ function calculateRemaining() {
   let remaining = budget - priceTotal
   let remainingAmount = document.getElementById("remainingAmount")
   remainingAmount.innerHTML = `₦${remaining}`
-
+  if (remaining < 0) {
+    remainingCard.classList.add("over")
+  } else {
+    remainingCard.classList.remove("over")
+  }
+  // show()
+  // calculateTotal()
 }
 
 function addItem() {
@@ -31,13 +38,25 @@ function addItem() {
     name: itemName,
     price: Number(itemPrice)
   }
-  document.getElementById("itemName").value = ""
-  document.getElementById("itemPrice").value = ""
-  items.push(itemInput)
-  console.log(items);
-  show()
-  calculateTotal()
-  calculateRemaining()
+
+  if (budget == "") {
+    alert("Set a budget!")
+    document.getElementById("itemName").value = ""
+    document.getElementById("itemPrice").value = ""
+  } else {
+    if (itemName == "" && itemPrice == "") {
+      alert("Input item")
+    } else {
+      document.getElementById("itemName").value = ""
+      document.getElementById("itemPrice").value = ""
+      items.push(itemInput)
+      console.log(items);
+      show()
+      calculateTotal()
+      calculateRemaining()
+    }
+  }
+
   // displayArea2.innerHTML = itemInput
 }
 
@@ -56,6 +75,7 @@ function show() {
 }
 
 let priceTotal = 0
+let remainingCard = document.getElementById("remainingCard")
 
 
 function calculateTotal() {
@@ -68,6 +88,7 @@ function calculateTotal() {
   }
 
   totalSpent.innerHTML = `₦${priceTotal}`
+
 }
 
 
@@ -75,6 +96,8 @@ function removeItem(i) {
   let check = confirm("Are you sure you want to delete item?")
   if (check) {
     items.splice(i, 1)
+    calculateTotal()
+    calculateRemaining()
     show()
   } else {
     show()
@@ -90,6 +113,9 @@ function clearAll() {
 
     if (check) {
       items.length = 0
+      show()
+      calculateTotal()
+      calculateRemaining()
       show()
     }
     else {
