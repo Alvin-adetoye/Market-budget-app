@@ -139,6 +139,7 @@ function clearAll() {
       show()
       calculateTotal()
       calculateRemaining()
+      calculateProgress()
       show()
       // itemNum()
     }
