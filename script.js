@@ -3,6 +3,7 @@ let displayArea2 = document.getElementById("itemList")
 let emptyState = document.getElementById("emptyState")
 let itemCount = document.getElementById("itemCount")
 let itemPercent = document.getElementById("progressText")
+let progressFill = document.getElementById("progressFill")
 let budget = 0
 
 
@@ -27,6 +28,7 @@ function setBudget() {
 
 function calculateProgress() {
   let percentSpent = `${((priceTotal / budget) * 100).toFixed(0)}%`
+  progressFill.style.width = percentSpent
   itemPercent.innerHTML = percentSpent
 }
 
@@ -54,7 +56,7 @@ function addItem() {
     price: Number(itemPrice)
   }
 
-  if (budget == "") {
+  if (budget === "") {
     alert("Set a budget!")
     document.getElementById("itemName").value = ""
     document.getElementById("itemPrice").value = ""
@@ -74,8 +76,6 @@ function addItem() {
       // itemNum()
     }
   }
-
-  // displayArea2.innerHTML = itemInput
 }
 
 
@@ -119,6 +119,7 @@ function removeItem(i) {
     items.splice(i, 1)
     calculateTotal()
     calculateRemaining()
+    calculateProgress()
     show()
     // itemNum()
   } else {
