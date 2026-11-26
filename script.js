@@ -44,7 +44,7 @@ function addItem() {
     document.getElementById("itemName").value = ""
     document.getElementById("itemPrice").value = ""
   } else {
-    if (itemName == "" && itemPrice == "") {
+    if (itemName == "" || itemPrice == "") {
       alert("Input item")
     } else {
       document.getElementById("itemName").value = ""
