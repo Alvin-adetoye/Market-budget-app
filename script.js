@@ -23,7 +23,7 @@ function setBudget() {
       budget = Number(budgetInput)
     }
   }
-
+  calculateRemaining()
 }
 
 function calculateProgress() {
