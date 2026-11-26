@@ -2,6 +2,7 @@ const items = []
 let displayArea2 = document.getElementById("itemList")
 let emptyState = document.getElementById("emptyState")
 let itemCount = document.getElementById("itemCount")
+let itemPercent = document.getElementById("progressText")
 let budget = 0
 
 
@@ -25,9 +26,8 @@ function setBudget() {
 }
 
 function calculateProgress() {
-  let percentSpent = `${((priceTotal / budget) * 100).toFixed(0)}`
-  console.log(percentSpent);
-  
+  let percentSpent = `${((priceTotal / budget) * 100).toFixed(0)}%`
+  itemPercent.innerHTML = percentSpent
 }
 
 
@@ -37,6 +37,7 @@ function calculateRemaining() {
   remainingAmount.innerHTML = `₦${remaining}`
   if (remaining < 0) {
     remainingCard.classList.add("over")
+    remainingCard.scrollIntoView({ behavior: "smooth" })
   } else {
     remainingCard.classList.remove("over")
   }
@@ -69,6 +70,7 @@ function addItem() {
       calculateTotal()
       calculateRemaining()
       calculateProgress()
+      // calculateProgress()
       // itemNum()
     }
   }
@@ -76,9 +78,6 @@ function addItem() {
   // displayArea2.innerHTML = itemInput
 }
 
-function itemNum() {
-
-}
 
 function show() {
   displayArea2.innerHTML = ""
@@ -89,6 +88,7 @@ function show() {
   }
   let itemNum = items.length
   itemCount.innerHTML = `Items(${itemNum})`
+  // calculateProgress()
   if (items.length === 0) {
     emptyState.classList.remove("hidden")
   } else {
@@ -110,7 +110,6 @@ function calculateTotal() {
   }
 
   totalSpent.innerHTML = `₦${priceTotal}`
-
 }
 
 
