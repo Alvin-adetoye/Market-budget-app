@@ -1,21 +1,35 @@
 const items = []
 let displayArea2 = document.getElementById("itemList")
 let emptyState = document.getElementById("emptyState")
+let itemCount = document.getElementById("itemCount")
 let budget = 0
 
 
 function setBudget() {
   let budgetInput = document.getElementById("budgetInput").value
   let displayArea = document.getElementById("totalBudget")
-
-  if (budgetInput == "") {
-    alert("Set budget!")
-  } else {
-    displayArea.innerHTML = `₦${budgetInput}`
+  if (items.length > 0) {
+    alert("You already have items in your shopping list. Clear your list before setting a new budget.")
     document.getElementById("budgetInput").value = ""
-    budget = Number(budgetInput)
+
+  } else {
+    if (budgetInput == "") {
+      alert("Set budget!")
+    } else {
+      displayArea.innerHTML = `₦${budgetInput}`
+      document.getElementById("budgetInput").value = ""
+      budget = Number(budgetInput)
+    }
   }
+
 }
+
+function calculateProgress() {
+  let percentSpent = `${((priceTotal / budget) * 100).toFixed(0)}`
+  console.log(percentSpent);
+  
+}
+
 
 function calculateRemaining() {
   let remaining = budget - priceTotal
@@ -54,10 +68,16 @@ function addItem() {
       show()
       calculateTotal()
       calculateRemaining()
+      calculateProgress()
+      // itemNum()
     }
   }
 
   // displayArea2.innerHTML = itemInput
+}
+
+function itemNum() {
+
 }
 
 function show() {
@@ -67,6 +87,8 @@ function show() {
         <i class="bi bi-trash3"></i>
       </button></div>`
   }
+  let itemNum = items.length
+  itemCount.innerHTML = `Items(${itemNum})`
   if (items.length === 0) {
     emptyState.classList.remove("hidden")
   } else {
@@ -99,6 +121,7 @@ function removeItem(i) {
     calculateTotal()
     calculateRemaining()
     show()
+    // itemNum()
   } else {
     show()
   }
@@ -117,6 +140,7 @@ function clearAll() {
       calculateTotal()
       calculateRemaining()
       show()
+      // itemNum()
     }
     else {
       show()
